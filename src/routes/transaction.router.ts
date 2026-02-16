@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { authenticate } from "../midllewares/auth.midllewares";
 import {upload } from "../midllewares/upload.midlleware"
-import { createTransaction,getTransactionById,getTransactions,updateTransaction } from "../controlers/transaction.controller";
+import { createTransaction,getTransactionById,updateTransaction,getTransactions } from "../controlers/transaction.controller";
 
 
 const router = Router();

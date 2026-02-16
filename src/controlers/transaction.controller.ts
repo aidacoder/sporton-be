@@ -33,15 +33,27 @@ import Product from "../models/product.models";
     }
  }
 
- export const getTransactions =async (req:Request,res:Response):Promise <void> =>{
 
-    try {
-        const transaction =await Transaction.find().sort({createdAt :-1}).populate("purchaseItems.productId");
-        res.status(200).json(transaction)
-    }catch (error){
-        res.status(500).json ({ message:"Error fetching transaction ",error})
-    }
- }
+
+ export const getTransactions = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const transactions = await Transaction.find()
+      .sort({ createdAt: -1 })
+      .populate("purchasedItems.productId");
+
+    res.status(200).json(transactions);
+  } catch (error: any) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error fetching transactions",
+      error: error.message,
+    });
+  }
+};
+
 
  export const getTransactionById = async (req:Request,res:Response):Promise <void> =>{
 
